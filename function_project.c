@@ -62,7 +62,7 @@ void showQuestion(int level, int num1, int num2)
 }
 void success()
 {
-    printf("\n >> Good ! 정답입니다. \n");
+    printf("\n >> Good ! 정답입니다!!!!!!. \n");
 }
 void fail()
 {
