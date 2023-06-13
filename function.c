@@ -66,14 +66,15 @@ int main(void)
        //p(ret); 
     
     // 계산기 함수
+    
     int num = 2;
     num = add(num, 3);
     p(num);
-    num = sub(num, 2);
+    num = sub(num, 3);
     p(num);
-    num = mul(num, 2);
+    num = mul(num, 3);
     p(num);
-    num = div(num, 2);
+    num = div(num, 3);
     p(num);
 
     return 0;
