@@ -4,31 +4,31 @@
 
 int main(void)
 {
-    srand(time(NULL));
-    printf("\n\n === 아빠는 대머리 게임 ===\n\n");
+    srand(time(NULL)); // 게임 RANDOM 요소
+    printf("\n\n === 아빠는 대머리 게임 ===\n\n"); // 게임 제목뽑기
     int answer; // 사용자 입력값
-    int treatment = rand() % 4; // 발모제 선택(0 - 3)
+    int treatment = rand() % 6; // 발모제 선택(0 - 3)
 
     int cntShowBottle = 0; // 이번 게임에 보여줄 병 갯수
     int prevCntShowBottle = 0; // 앞 게임에 보여준 병 갯수
     // 서로 보여주는 병 갯수를 다르게 하여 정답률 향상(처음에 2개 -> 다음엔 3개)
 
     // 3번의 기회 (3번의 발모제 투여 시도)
-    for (int i = 1; i <= 3; i++)
+    for (int i = 1; i <= 6; i++)
     {
-        int bottle[4] = {0, 0, 0, 0}; // 4개의 병 배열 초기화
+        int bottle[10] = {0, 0 }; // 4개의 병 배열 초기화
         do {
-            cntShowBottle = rand() % 2 + 2; // 보여줄 병 갯수 (0-1, +2 -> 2,3)
-        }while(cntShowBottle == prevCntShowBottle);
-        cntShowBottle = prevCntShowBottle;
+            cntShowBottle = rand() % 3 + 2; // 보여줄 병 갯수 (0-1, +2 -> 2,3)
+        }while(cntShowBottle == prevCntShowBottle); // do_while문을 통해 조건내에서 수 에상관없이 반복가능
+        prevCntShowBottle = cntShowBottle;
 
         int isIncluded = 0; // 보여줄 병 중에 발모제가 포함되었는지 여부
-        printf("> %d 번째 시도 : ", i);
+        printf("\n> %d 번째 시도 : ", i);
 
         // 보여줄 병 종류를 선택
         for (int j = 0; j < cntShowBottle; j++)
         {
-            int randBottle = rand() % 4; // 0-3
+            int randBottle = rand() % 6; // 0-5
 
             // 아직 선택되지 않은 병이면, 선택 처리
             if (bottle[randBottle] == 0)
@@ -46,10 +46,10 @@ int main(void)
             }
         }
         // 사용자에게 문제 표시
-        for(int k = 0; k < 4; k++)
+        for(int k = 0; k < 7; k++)
         {
             if (bottle[k] == 1)
-               printf("%d ", k+1);
+               printf("%d", k+1);
         }
         printf(" 물약을 머리에 바릅니다.\n");
         
@@ -62,23 +62,26 @@ int main(void)
             printf(" >> 실패 ! 머리가 나지 않았어요..\n");
         }
 
-        printf("\n .....계속 하려면 아무키나 누르세요 .....");
-        getchar();
+        printf("\n\n발모제는 몇 번 일까요?");
+        scanf("%d", &answer);
 
+        if (answer == treatment + 1)
+        {
+            printf("\n >> 정답입니다.!!!!!\n");
+            exit(0);
+        }
+        else
+        {
+
+            printf("\n >> 땡 ! 틀렸어요\n");
+            getchar();
+        }
 
     }
-    printf("\n\n발모제는 몇 번 일까요?");
-    scanf("%d", &answer);
 
-    if (answer == treatment + 1)
+    printf("\n >> 땡 ! 틀렸어요. 정답은 %d 입니다.\n", treatment + 1);
     {
-        printf("\n >> 정답입니다.!\n");
-    }
-    else
-    {
-
-        printf("\n >> 땡 ! 틀렸어요. 정답은 %d 입니다.\n", treatment + 1);
+    return 0;    
     }
     
-    return 0;
 }
